@@ -1,0 +1,186 @@
+			<![CDATA[with meters as (
+	select
+		coalesce(row_number() over (partition by items.stop_id order by items.name)) as meter_ordinal,
+		items.*
+	from schema_name.dim_items items 
+	join schema_name.dim_stops stops on stops.id = items.stop_id
+	join schema_name.dim_routes routes on routes.id=stops.route_id
+	join schema_name.dim_production_item lookup on lookup.stop_id = items.stop_id
+	left outer join schema_name.dim_items well on well.id = lookup.well_item_id
+	where items.type_code = 2
+		and routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
+		--and well.properties->>'Well Category' = 'HORIZONTAL'
+	order by items.stop_id, items.name
+	
+), meter_values as (
+	select
+		t.item_id,
+		t.client_day,
+		t.stop_id,
+		coalesce(t.yesterdays_volume, 0) as yesterdays_volume,
+		t.variance1,
+		t.variance2
+	from (
+		select
+			items.id as item_id,
+			client_day,
+			stops.id stop_id,
+			items.name as meter_name,
+			((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+			(case 
+				when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+				when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+				else 0
+			end) as variance1,
+			(case 
+				when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+				when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+				else 0
+			end) as variance2,
+			items.sub_type_code as meter_type
+		from schema_name.item_crosstab
+		join schema_name.dim_items items on items.id=item_id
+		join schema_name.dim_stops stops on stops.id = items.stop_id
+		join schema_name.dim_routes routes on routes.id=stops.route_id
+	  join schema_name.dim_production_item lookup on lookup.stop_id = items.stop_id
+	  left outer join schema_name.dim_items well on well.id = lookup.well_item_id
+		where items.type_code = 2
+		  and routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
+		  --and well.properties->>'Well Category' = 'HORIZONTAL'
+	) t
+)
+
+select 
+	client_day,
+	stop_name,
+	meter1_name,
+	meter1_value,
+	meter2_name,
+	meter2_value,
+	meter3_name,
+	meter3_value,
+	meter4_name,
+	meter4_value,
+	meter5_name,
+	meter5_value,
+	meter6_name,
+	meter6_value,
+	meter7_name,
+	meter7_value,
+	meter8_name,
+	meter8_value,
+	meter9_name,
+	meter9_value,
+	meter_count,
+	(case when t.ampersand_check_meters > 0 then t.variance1 else t.variance2 end) as variance,
+	(case 
+		when t.ampersand_check_meters > 0 and t.sum_check1 = 0 then null
+		when t.ampersand_check_meters > 0 then t.variance1 / t.sum_check1
+		when t.sum_check2 <> 0 then t.variance2 / t.sum_check2
+		else null
+	end) as variance_percent
+		
+from (
+
+	select 
+		t.client_day,
+		t.stop_name,
+		meter1.name as meter1_name,
+		meter1_value.yesterdays_volume as meter1_value,
+		meter2.name as meter2_name,
+		meter2_value.yesterdays_volume as meter2_value,
+		meter3.name as meter3_name,
+		meter3_value.yesterdays_volume as meter3_value,
+		meter4.name as meter4_name,
+		meter4_value.yesterdays_volume as meter4_value,
+		meter5.name as meter5_name,
+		meter5_value.yesterdays_volume as meter5_value,
+		meter6.name as meter6_name,
+		meter6_value.yesterdays_volume as meter6_value,
+		meter7.name as meter7_name,
+		meter7_value.yesterdays_volume as meter7_value,
+		meter8.name as meter8_name,
+		meter8_value.yesterdays_volume as meter8_value,
+		meter9.name as meter9_name,
+		meter9_value.yesterdays_volume as meter9_value,
+		(select count(*) from meters where meters.stop_id=t.stop_id) as meter_count,
+		(
+			coalesce(meter1_value.variance1, 0)
+			+ coalesce(meter2_value.variance1, 0) 
+			+ coalesce(meter3_value.variance1, 0) 
+			+ coalesce(meter4_value.variance1, 0)
+			+ coalesce(meter5_value.variance1, 0) 
+			+ coalesce(meter6_value.variance1, 0) 
+			+ coalesce(meter7_value.variance1, 0) 
+			+ coalesce(meter8_value.variance1, 0) 
+			+ coalesce(meter9_value.variance1, 0)) as variance1,
+		(
+			coalesce(meter1_value.variance2, 0)
+			+ coalesce(meter2_value.variance2, 0) 
+			+ coalesce(meter3_value.variance2, 0) 
+			+ coalesce(meter4_value.variance2, 0)
+			+ coalesce(meter5_value.variance2, 0) 
+			+ coalesce(meter6_value.variance2, 0) 
+			+ coalesce(meter7_value.variance2, 0) 
+			+ coalesce(meter8_value.variance2, 0) 
+			+ coalesce(meter9_value.variance2, 0)) as variance2,
+		((
+			least(meter1_value.variance1, 0)
+			+ least(meter2_value.variance1, 0) 
+			+ least(meter3_value.variance1, 0) 
+			+ least(meter4_value.variance1, 0)
+			+ least(meter5_value.variance1, 0) 
+			+ least(meter6_value.variance1, 0) 
+			+ least(meter7_value.variance1, 0) 
+			+ least(meter8_value.variance1, 0) 
+			+ least(meter9_value.variance1, 0)) * -1) as sum_check1,
+		((
+			least(meter1_value.variance2, 0)
+			+ least(meter2_value.variance2, 0) 
+			+ least(meter3_value.variance2, 0) 
+			+ least(meter4_value.variance2, 0)
+			+ least(meter5_value.variance2, 0) 
+			+ least(meter6_value.variance2, 0) 
+			+ least(meter7_value.variance2, 0) 
+			+ least(meter8_value.variance2, 0) 
+			+ least(meter9_value.variance2, 0)) * -1) as sum_check2,
+		t.ampersand_check_meters
+
+	from (
+		select 
+			generate_series(date_trunc('month', ($P{Date})::date), (date_trunc('month', ($P{Date})::date) + interval '1 month' - interval '1 day')::date, '1 day'::interval)::date as client_day,
+			stops.name as stop_name,
+			stops.id as stop_id,
+			sum( (case when meters.id is not null then 1 else 0 end) ) as ampersand_check_meters
+		from casillas.stops
+		left outer join meters on meters.stop_id=stops.id and meters.name like '%&%' and meters.sub_type_code = 5
+		group by 1, 2, 3
+	) t
+	left outer join meters meter1 on meter1.stop_id=t.stop_id and meter1.meter_ordinal=1
+	left outer join meter_values meter1_value on meter1_value.item_id=meter1.id and meter1_value.client_day=t.client_day
+
+	left outer join meters meter2 on meter2.stop_id=t.stop_id and meter2.meter_ordinal=2
+	left outer join meter_values meter2_value on meter2_value.item_id=meter2.id and meter2_value.client_day=t.client_day
+
+	left outer join meters meter3 on meter3.stop_id=t.stop_id and meter3.meter_ordinal=3
+	left outer join meter_values meter3_value on meter3_value.item_id=meter3.id and meter3_value.client_day=t.client_day
+
+	left outer join meters meter4 on meter4.stop_id=t.stop_id and meter4.meter_ordinal=4
+	left outer join meter_values meter4_value on meter4_value.item_id=meter4.id and meter4_value.client_day=t.client_day
+
+	left outer join meters meter5 on meter5.stop_id=t.stop_id and meter5.meter_ordinal=5
+	left outer join meter_values meter5_value on meter5_value.item_id=meter5.id and meter5_value.client_day=t.client_day
+
+	left outer join meters meter6 on meter6.stop_id=t.stop_id and meter6.meter_ordinal=6
+	left outer join meter_values meter6_value on meter6_value.item_id=meter6.id and meter6_value.client_day=t.client_day
+
+	left outer join meters meter7 on meter7.stop_id=t.stop_id and meter7.meter_ordinal=7
+	left outer join meter_values meter7_value on meter7_value.item_id=meter7.id and meter7_value.client_day=t.client_day
+
+	left outer join meters meter8 on meter8.stop_id=t.stop_id and meter8.meter_ordinal=8
+	left outer join meter_values meter8_value on meter8_value.item_id=meter8.id and meter8_value.client_day=t.client_day
+
+	left outer join meters meter9 on meter9.stop_id=t.stop_id and meter9.meter_ordinal=9
+	left outer join meter_values meter9_value on meter9_value.item_id=meter9.id and meter9_value.client_day=t.client_day
+	order by t.stop_id, t.client_day
+) t;]]>
