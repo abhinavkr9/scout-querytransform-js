@@ -6,15 +6,15 @@ import { readXML } from './parseJRXML'
 
 const jrxml = readXML ('./MainJrxml.data')
 const xq = xmlquery (jrxml)
-let queryString = xq.text ('queryString')
+let queryString = xq.find ('queryString').text()
 //console.log (queryString)
 let newQueryString = queryString
     .split ('\n')
-    .map ((line, index, arr) => {
+    .map ((line) => {
         let replaced = line;
         for (let property in config) {
             if (line.includes(property)) {               
-                replaced = replaced.replace (new RegExp(property, "g"), config[property])
+                replaced = replaced.replace (new RegExp (property, "g"), config[property])
             }
         }
         return replaced
