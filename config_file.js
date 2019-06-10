@@ -1,11 +1,11 @@
-export const config = {
-    'forms': 'stg_forms',
-    'mv_items': 'dim_items',
-    'mv_stops': 'dim_stops',
-    'mv_routes': 'dim_routes',
-    'mv_production_item_lookup': 'dim_production_item',
-    'core': 'schema_name',
-    'pivot_items': 'item_crosstab',
-    'pivot_tickets': 'tickets_crosstab',
-    'pivot_forms': 'forms_crosstab',
-}
+import fs from 'fs'
+
+const data = fs.readFileSync ('./config.csv', 'utf8')
+let config = {}
+data.split (/\r\n|\r|\n/)
+    .map (line => line.split (/\s*,\s*/))
+    .forEach ((value) => {
+        config[value[0]] = value[1]
+    })
+
+export default config

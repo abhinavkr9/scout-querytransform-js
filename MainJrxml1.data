@@ -89,19 +89,19 @@
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Scout Prod VN15"/>
 		<parameter name="Date" class="java.util.Date"/>
 		<queryString language="SQL">
-			<![CDATA[with meters as (
+<![CDATA[with meters as (
 	select
-		coalesce(row_number() over (partition by items.stop_id order by items.name)) as meter_ordinal,
-		items.*
-	from core.mv_items items 
-	join core.mv_stops stops on stops.id = items.stop_id
-	join core.mv_routes routes on routes.id=stops.route_id
-	join core.mv_production_item_lookup lookup on lookup.stop_id = items.stop_id
-	left outer join core.mv_items well on well.id = lookup.well_item_id
-	where items.type_code = 2
-		and routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
+		coalesce(row_number() over (partition by stg_items.stop_id order by stg_items.name)) as meter_ordinal,
+		stg_items.*
+	from schema_name.mv_stg_items stg_items 
+	join schema_name.mv_stg_stops stg_stops on stg_stops.id = stg_items.stop_id
+	join schema_name.mv_stg_routes stg_routes on stg_routes.id=stg_stops.route_id
+	join schema_name.dim_production_item lookup on lookup.stop_id = stg_items.stop_id
+	left outer join schema_name.mv_stg_items well on well.id = lookup.well_item_id
+	where stg_items.type_code = 2
+		and stg_routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
 		--and well.properties->>'Well Category' = 'HORIZONTAL'
-	order by items.stop_id, items.name
+	order by stg_items.stop_id, stg_items.name
 	
 ), meter_values as (
 	select
@@ -113,30 +113,30 @@
 		t.variance2
 	from (
 		select
-			items.id as item_id,
+			stg_items.id as item_id,
 			client_day,
-			stops.id stop_id,
-			items.name as meter_name,
+			stg_stops.id stop_id,
+			stg_items.name as meter_name,
 			((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
 			(case 
-				when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
-				when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+				when stg_items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+				when stg_items.sub_type_code = 5 and stg_items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
 				else 0
 			end) as variance1,
 			(case 
-				when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
-				when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+				when stg_items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+				when stg_items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
 				else 0
 			end) as variance2,
-			items.sub_type_code as meter_type
-		from core.pivot_items
-		join core.mv_items items on items.id=item_id
-		join core.mv_stops stops on stops.id = items.stop_id
-		join core.mv_routes routes on routes.id=stops.route_id
-	  join core.mv_production_item_lookup lookup on lookup.stop_id = items.stop_id
-	  left outer join core.mv_items well on well.id = lookup.well_item_id
-		where items.type_code = 2
-		  and routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
+			stg_items.sub_type_code as meter_type
+		from schema_name.pivot_stg_items
+		join schema_name.mv_stg_items stg_items on stg_items.id=item_id
+		join schema_name.mv_stg_stops stg_stops on stg_stops.id = stg_items.stop_id
+		join schema_name.mv_stg_routes stg_routes on stg_routes.id=stg_stops.route_id
+	  join schema_name.dim_production_item lookup on lookup.stop_id = stg_items.stop_id
+	  left outer join schema_name.mv_stg_items well on well.id = lookup.well_item_id
+		where stg_items.type_code = 2
+		  and stg_routes.organization_id='a3ec5d1c-69ed-4ef1-949e-09aee707e4fb'
 		  --and well.properties->>'Well Category' = 'HORIZONTAL'
 	) t
 )
@@ -240,11 +240,11 @@ from (
 	from (
 		select 
 			generate_series(date_trunc('month', ($P{Date})::date), (date_trunc('month', ($P{Date})::date) + interval '1 month' - interval '1 day')::date, '1 day'::interval)::date as client_day,
-			stops.name as stop_name,
-			stops.id as stop_id,
+			stg_stops.name as stop_name,
+			stg_stops.id as stop_id,
 			sum( (case when meters.id is not null then 1 else 0 end) ) as ampersand_check_meters
-		from casillas.stops
-		left outer join meters on meters.stop_id=stops.id and meters.name like '%&%' and meters.sub_type_code = 5
+		from casillas.stg_stops
+		left outer join meters on meters.stop_id=stg_stops.id and meters.name like '%&%' and meters.sub_type_code = 5
 		group by 1, 2, 3
 	) t
 	left outer join meters meter1 on meter1.stop_id=t.stop_id and meter1.meter_ordinal=1
@@ -274,8 +274,7 @@ from (
 	left outer join meters meter9 on meter9.stop_id=t.stop_id and meter9.meter_ordinal=9
 	left outer join meter_values meter9_value on meter9_value.item_id=meter9.id and meter9_value.client_day=t.client_day
 	order by t.stop_id, t.client_day
-) t;]]>
-		</queryString>
+) t;]]></queryString>
 		<field name="client_day" class="java.sql.Date"/>
 		<field name="stop_name" class="java.lang.String"/>
 		<field name="meter1_name" class="java.lang.String"/>

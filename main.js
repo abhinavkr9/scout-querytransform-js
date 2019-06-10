@@ -1,13 +1,12 @@
 // ESM syntax is supported.
 export {}
 import xmlquery from 'xml-query'
-import { config } from './config_file.js'
-import { readXML } from './parseJRXML'
+import config from './config_file.js'
+import { readXML, writeFile } from './parseJRXML'
 
 const jrxml = readXML ('./MainJrxml.data')
-const xq = xmlquery (jrxml)
+const xq = xmlquery (jrxml.xml)
 let queryString = xq.find ('queryString').text()
-//console.log (queryString)
 let newQueryString = queryString
     .split ('\n')
     .map ((line) => {
@@ -19,5 +18,13 @@ let newQueryString = queryString
         }
         return replaced
     })
-console.log (newQueryString)
+let before = /^[\s\S]*?<queryString language="SQL">/
+let afer = /<\/queryString>[\s\S]*$/
+let buffer = jrxml.file.match(before)[0] + '\n<![CDATA['
+buffer += newQueryString.join('\n') + ']]>\n'
+buffer += jrxml.file.match(afer)[0]
+writeFile ('./MainJrxml1.data', buffer)
+
+
+//console.log (JSON.stringify (config, null, 2))
 //fs.writeFileSync ('./sample_query1.txt', data.join('\n'))
