@@ -11,8 +11,6 @@
   "license": "ISC",
   "keywords": [],
   "dependencies": {
-    "esm": "^3.2.25",
-    "xml-query": "^1.5.0",
-    "xml-reader": "^2.4.3"
+    "esm": "^3.2.25"
   }
 }

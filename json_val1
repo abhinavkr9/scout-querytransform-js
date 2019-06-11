@@ -1,0 +1,1345 @@
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+order by routes.organization_unit_2, routes.organization_unit_3, routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = 'ef74c7b8-59ce-474a-89d8-dabf2f4bc33e'
+group by items.json_data->>'stop_id', client_day
+join acme.routes on stops.json_data->>'route_id' = routes.id::text
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = 'ef74c7b8-59ce-474a-89d8-dabf2f4bc33e'
+group by items.json_data->>'stop_id', client_day
+join acme.routes on stops.json_data->>'route_id' = routes.id::text
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '18cfce2f-fa33-4bf0-85ca-e240dd8d5dcc'
+group by items.json_data->>'stop_id', client_day
+join alta.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '18cfce2f-fa33-4bf0-85ca-e240dd8d5dcc'
+group by items.json_data->>'stop_id', client_day
+join alta.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+tops.json_data->>'name' as "Lease",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '421662d6-7d12-4981-85a9-0e0c6066bb05'
+group by items.json_data->>'stop_id', client_day
+join bretagne.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name != 'RODGER BRANDENBURG' and (stops.json_data ->> 'deleted')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Lease",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '421662d6-7d12-4981-85a9-0e0c6066bb05'
+group by items.json_data->>'stop_id', client_day
+join bretagne.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name != 'RODGER BRANDENBURG' and (stops.json_data ->> 'deleted')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Lease",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '421662d6-7d12-4981-85a9-0e0c6066bb05'
+group by items.json_data->>'stop_id', client_day
+join bretagne.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name != 'RODGER BRANDENBURG' and (stops.json_data ->> 'deleted')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '4cc70513-4cdd-4445-b9c6-cead43988e30'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join canyoncreek.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+--and (stops.json_data->>'name' not like 'TB%')
+--and stops.json_data->>'name' not like '%VRU%'
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '4cc70513-4cdd-4445-b9c6-cead43988e30'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join canyoncreek.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+--and (stops.json_data->>'name' not like 'TB%')
+--and stops.json_data->>'name' not like '%VRU%'
+order by routes.name, stops.json_data->>'name'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10000')->>'value')::numeric as total_daily_run_time,
+  ((well_values->'attribute_type_code_10001')->>'value')::numeric as on_time,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as off_time,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as afterflow_time,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, ((well_values->'attribute_type_code_50')->>'value')::numeric ) as oil_production,
+  coalesce( ((production_values->'attribute_type_code_50')->>'target')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric, ((well_values->'attribute_type_code_51')->>'value')::numeric ) as water_production,
+  coalesce( ((production_values->'attribute_type_code_51')->>'target')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+((well_values->'attribute_type_code_79')->>'value')::numeric ) as gas_production,
+((production_values->'attribute_type_code_79')->>'target')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  items.properties ->> 'OTC PUN'::text AS otc_pun,
+  items.properties ->> 'API #'::text AS api_no,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'Budget Category' as budget_cateogry,
+  items.properties->>'Well Category' as well_category,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+  coalesce (items.properties->>'Aries Propnum', stop_header.properties->>'Aries Propnum') as aries_propnum,
+  coalesce (items.properties->>'Propnum', stop_header.properties->>'Propnum') as propnum,
+  items.properties->>'Observation' as observation,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+    (forms.json_data ->> 'number'::text) AS number,
+    (forms.json_data ->> 'on_seal_number'::text) AS on_seal_number,
+    (forms.json_data ->> 'off_seal_number'::text) AS off_seal_number,
+    ((forms.json_data ->> 'item_id'::text))::uuid AS tank_id,
+    (timezone('America/Chicago'::text, timezone('utc'::text, ((forms.json_data ->> 'ticket_date'::text))::timestamp without time zone)))::date AS ticket_date,
+    ((pivot_tickets."values" -> 'attribute_type_code_75'::text) ->> 'value'::text) AS transporter,
+            WHEN (((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer - (((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer / 60) * 60)) < 10) THEN ((((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer / 60) || ':0'::text) || ((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer - (((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer / 60) * 60)))
+            ELSE ((((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer / 60) || ':'::text) || ((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer - (((((pivot_tickets."values" -> 'attribute_type_code_10026'::text) ->> 'value'::text))::integer / 60) * 60)))
+    (((pivot_tickets."values" -> 'attribute_type_code_81'::text) ->> 'value'::text))::numeric AS open_gauge_temperature,
+    (((pivot_tickets."values" -> 'attribute_type_code_82'::text) ->> 'value'::text))::numeric AS close_gauge_temperature,
+    (((pivot_tickets."values" -> 'attribute_type_code_83'::text) ->> 'value'::text))::numeric AS observed_temperature,
+    (((pivot_tickets."values" -> 'attribute_type_code_84'::text) ->> 'value'::text))::numeric AS observed_gravity,
+    (((pivot_tickets."values" -> 'attribute_type_code_85'::text) ->> 'value'::text))::numeric AS bsw,
+    (((pivot_tickets."values" -> 'attribute_type_code_102'::text) ->> 'value'::text))::numeric AS gross_volume_calculated,
+    (((pivot_tickets."values" -> 'attribute_type_code_86'::text) ->> 'value'::text))::numeric AS gross_volume,
+    (((pivot_tickets."values" -> 'attribute_type_code_89'::text) ->> 'value'::text))::numeric AS net_volume,
+    (((pivot_tickets."values" -> 'attribute_type_code_99'::text) ->> 'value'::text))::numeric AS corrected_gravity,
+    (((pivot_tickets."values" -> 'attribute_type_code_100'::text) ->> 'value'::text))::numeric AS open_gauge,
+    (((pivot_tickets."values" -> 'attribute_type_code_100'::text) ->> 'output_value'::text))::numeric AS open_gauge_bbl,
+    (((pivot_tickets."values" -> 'attribute_type_code_101'::text) ->> 'value'::text))::numeric AS close_gauge,
+    (((pivot_tickets."values" -> 'attribute_type_code_101'::text) ->> 'output_value'::text))::numeric AS close_gauge_bbl,
+    (((pivot_tickets."values" -> 'attribute_type_code_10000'::text) ->> 'value'::text))::numeric AS ticket_volume,
+    ((pivot_tickets."values" -> 'attribute_type_code_10029'::text) ->> 'value'::text) AS trucking_co,
+    ((pivot_tickets."values" -> 'attribute_type_code_10028'::text) ->> 'value'::text) AS operating_co,
+    ((pivot_tickets."values" -> 'attribute_type_code_10030'::text) ->> 'value'::text) AS well_name,
+    (((pivot_tickets."values" -> 'attribute_type_code_10031'::text) ->> 'value'::text))::numeric AS volume_fluid
+     JOIN core.mv_stops stops ON (((stops.id)::text = (forms.json_data ->> 'stop_id'::text)))
+     JOIN core.mv_items tank ON (((tank.id)::text = (forms.json_data ->> 'item_id'::text))))
+  WHERE (((pivot_tickets.deleted = false) AND ((forms.json_data ->> 'product'::text) = ANY (ARRAY['1'::text, '2'::text]))) AND (stops.organization_id = '00ed0897-0fa7-4187-a0da-00b6537f591d'::uuid) and pivot_tickets.client_day between $P{StartDate} and $P{EndDate})
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '00ed0897-0fa7-4187-a0da-00b6537f591d'
+group by items.json_data->>'stop_id', client_day
+join citizen.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '00ed0897-0fa7-4187-a0da-00b6537f591d'
+group by items.json_data->>'stop_id', client_day
+join citizen.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.name, stops.json_data->>'name'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '00ed0897-0fa7-4187-a0da-00b6537f591d'
+group by items.json_data->>'stop_id', client_day
+join citizen.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NON-OP%' and (stops.json_data ->> 'deleted')::boolean = false
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '00ed0897-0fa7-4187-a0da-00b6537f591d'
+group by items.json_data->>'stop_id', client_day
+join citizen.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.name, stops.json_data->>'name'
+(json_data ->> 'created_by') AS created_id,
+(json_data ->> 'submission_date') AS submission_date,
+(json_data ->> 'stop_id') AS stop_id,
+(json_data ->> 'client_day')::date AS client_day,
+(json_data ->> 'item_id') AS item_id
+(json_data ->> 'organization_id') = 'b7a7c026-9a04-4055-afef-7d39e515956d'
+AND (json_data ->> 'created_by') IS NOT NULL
+AND (json_data ->> 'source') = '1'
+coalesce(mv_items.properties->>'FlowCal Meter #', meters.properties->>'FlowCal Meter #') as "FlowCal Meter #"
+join core.mv_stops stops on stops.id = (forms.json_data->>'stop_id')::uuid
+left outer join core.mv_items on mv_items.id = (forms.json_data->>'item_id')::uuid and mv_items.type_code=2 and mv_items.organization_id='b7a7c026-9a04-4055-afef-7d39e515956d'
+where json_data->>'organization_id' = 'b7a7c026-9a04-4055-afef-7d39e515956d'
+and json_data->>'config_code' = '5'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  coalesce( ((well_values->'attribute_type_code_50')->>'value')::numeric, 0) as allocated_oil_production,
+  coalesce( ((well_values->'attribute_type_code_51')->>'value')::numeric, 0) as allocated_water_production,
+  coalesce( ((well_values->'attribute_type_code_79')->>'value')::numeric, 0) as allocated_gas_production,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, ((well_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( ((production_values->'attribute_type_code_50')->>'target')::numeric, 0) as oil_production_target,
+  coalesce( ((production_values->'attribute_type_code_51')->>'value')::numeric, ((well_values->'attribute_type_code_51')->>'value')::numeric, 0) as water_production,
+  coalesce( ((production_values->'attribute_type_code_51')->>'target')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+  coalesce( ((production_values->'attribute_type_code_79')->>'value')::numeric, ((well_values->'attribute_type_code_79')->>'value')::numeric, 0) as gas_production,
+((production_values->'attribute_type_code_79')->>'target')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  coalesce( ((production_values->'attribute_type_code_10004')->>'value')::numeric, ((well_values->'attribute_type_code_10004')->>'value')::numeric, 0) as gas_sales,
+  coalesce( ((production_values->'attribute_type_code_10003')->>'value')::numeric, ((well_values->'attribute_type_code_10003')->>'value')::numeric, 0) as lease_use,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as alloc_lease_use,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as alloc_gas_sales,
+  coalesce(stop_headers.properties->>'Disposal Site', items.properties->>'Disposal Site') as disposal_site,
+  coalesce(stop_headers.properties->>'Area', items.properties->>'Area') as network,
+  coalesce(stop_headers.properties->>'Type of Site', items.properties->>'Type of Site') as site_type
+-- 				case when (forms.json_data->>'product') = '1' then coalesce( ((pivot_tickets.values->'attribute_type_code_10000')->>'value')::numeric, ((pivot_tickets.values->'attribute_type_code_10000')->>'value')::numeric, 0) else 0 end
+-- 				case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_86')->>'value')::numeric, 0) else 0 end
+-- 			forms.json_data->>'product' as product
+-- 		group by pivot_tickets.stop_id, pivot_tickets.client_day, forms.json_data->>'product'
+--and well.properties->>'Well Category' = 'HORIZONTAL'
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 and items.name like '%&%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+  --and well.properties->>'Well Category' = 'HORIZONTAL'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  coalesce( ((well_values->'attribute_type_code_50')->>'value')::numeric, 0) as allocated_oil_production,
+  coalesce( ((well_values->'attribute_type_code_51')->>'value')::numeric, 0) as allocated_water_production,
+  coalesce( ((well_values->'attribute_type_code_79')->>'value')::numeric, 0) as allocated_gas_production,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, ((well_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( ((production_values->'attribute_type_code_50')->>'target')::numeric, 0) as oil_production_target,
+  coalesce( ((production_values->'attribute_type_code_51')->>'value')::numeric, ((well_values->'attribute_type_code_51')->>'value')::numeric, 0) as water_production,
+  coalesce( ((production_values->'attribute_type_code_51')->>'target')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+  coalesce( ((production_values->'attribute_type_code_79')->>'value')::numeric, ((well_values->'attribute_type_code_79')->>'value')::numeric, 0) as gas_production,
+((production_values->'attribute_type_code_79')->>'target')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  coalesce( ((production_values->'attribute_type_code_10004')->>'value')::numeric, ((well_values->'attribute_type_code_10004')->>'value')::numeric, 0) as gas_sales,
+  coalesce( ((production_values->'attribute_type_code_10003')->>'value')::numeric, ((well_values->'attribute_type_code_10003')->>'value')::numeric, 0) as lease_use,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as alloc_lease_use,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as alloc_gas_sales,
+  coalesce(stop_headers.properties->>'Disposal Site', items.properties->>'Disposal Site') as disposal_site,
+  coalesce(stop_headers.properties->>'Area', items.properties->>'Area') as network,
+  coalesce(stop_headers.properties->>'Type of Site', items.properties->>'Type of Site') as site_type
+-- 				case when (forms.json_data->>'product') = '1' then coalesce( ((pivot_tickets.values->'attribute_type_code_10000')->>'value')::numeric, ((pivot_tickets.values->'attribute_type_code_10000')->>'value')::numeric, 0) else 0 end
+-- 				case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_86')->>'value')::numeric, 0) else 0 end
+-- 			forms.json_data->>'product' as product
+-- 		group by pivot_tickets.stop_id, pivot_tickets.client_day, forms.json_data->>'product'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '95fc09e3-4021-4885-aa0e-aa11e4d62cf5'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join lario.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '95fc09e3-4021-4885-aa0e-aa11e4d62cf5'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join lario.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.name, stops.json_data->>'name'
+t.tank_properties->>'Tank Size' as tank_size,
+coalesce( ((values->'attribute_type_code_10033')->>'value')::numeric, 0 ) as volume_on_hand,
+(COALESCE(((values -> 'attribute_type_code_10033'::text) ->> 'carried'::text), 'false'::text))::boolean AS volume_on_hand_carried,
+t.tank_properties->>'Tank Size' as tank_size,
+coalesce( ((values->'attribute_type_code_10033')->>'value')::numeric, 0 ) as volume_on_hand,
+(COALESCE(((values -> 'attribute_type_code_10033'::text) ->> 'carried'::text), 'false'::text))::boolean AS volume_on_hand_carried,
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'sub_type_code' in ('5','6')
+and ((pivot_items.values->'attribute_type_code_78')->>'value') is not null
+and ((pivot_items.values->'attribute_type_code_78')->>'source') <> '6'
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.organization_unit_2, routes.organization_unit_3, routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+(forms.json_data->>'stop_id')::uuid as stop_id
+where (forms.json_data->>'product') = '1' AND pivot_tickets.client_day >= ($P{Date})::date - INTERVAL '182 day'
+group by forms.json_data->>'stop_id'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10028')->>'value')::numeric as rpm,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+(targets.target_json->>'attribute_type_code_79')::numeric,
+    (targets.target_json->>'attribute_type_code_10022')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+--and (a.json_data->>'name') in ('MC East - East','MC East - West')
+tops.json_data->>'name' as stop_name,
+items.json_data->>'name' as item_name,
+(users.json_data->>'first_name') || ' ' || (users.json_data->>'last_name') as user,
+((pivot.values->'attribute_type_code_50')->>'value')::numeric as oil_production,
+coalesce( ((pivot.values->'attribute_type_code_51')->>'value')::numeric, ((pivot.values->'attribute_type_code_10015')->>'value')::numeric) as water_production,
+coalesce( ((pivot.values->'attribute_type_code_79')->>'value')::numeric, ((pivot.values->'attribute_type_code_10022')->>'value')::numeric) as gas_production,
+(attribute_values.json_data->>'stop_id')::uuid as stop_id,
+(attribute_values.json_data->>'item_id')::uuid as item_id,
+(attribute_values.json_data->>'value')::numeric as value,
+(attribute_values.json_data->>'output_value')::numeric as output_value,
+(attribute_values.json_data->>'attribute_type_code')::numeric as attribute_type_code,
+(attribute_values.json_data->>'submission_date')::timestamp as submission_date,
+(attribute_values.json_data->>'effective_date')::timestamp as effective_date,
+(attribute_values.json_data->>'created_at')::timestamp as created_at,
+attribute_values.json_data->>'tz' as tz,
+(attribute_values.json_data->>'created_by')::uuid as created_by
+join core.mv_stops stops on stops.id::text = attribute_values.json_data->>'stop_id'
+where routes.organization_id='3e6ec3ac-fcce-4698-b1a6-87140e1197ec' and attribute_values.json_data->>'item_type_code' = '5'
+tops.json_data->>'name' as stop_name,
+items.json_data->>'name' as item_name,
+(users.json_data->>'first_name') || ' ' || (users.json_data->>'last_name') as user,
+((pivot.values->'attribute_type_code_50')->>'value')::numeric as oil_production,
+coalesce( ((pivot.values->'attribute_type_code_51')->>'value')::numeric, ((pivot.values->'attribute_type_code_10015')->>'value')::numeric) as water_production,
+coalesce( ((pivot.values->'attribute_type_code_79')->>'value')::numeric, ((pivot.values->'attribute_type_code_10022')->>'value')::numeric) as gas_production,
+(attribute_values.json_data->>'stop_id')::uuid as stop_id,
+(attribute_values.json_data->>'item_id')::uuid as item_id,
+(attribute_values.json_data->>'value')::numeric as value,
+(attribute_values.json_data->>'output_value')::numeric as output_value,
+(attribute_values.json_data->>'attribute_type_code')::numeric as attribute_type_code,
+(attribute_values.json_data->>'submission_date')::timestamp as submission_date,
+(attribute_values.json_data->>'effective_date')::timestamp as effective_date,
+(attribute_values.json_data->>'created_at')::timestamp as created_at,
+attribute_values.json_data->>'tz' as tz,
+(attribute_values.json_data->>'created_by')::uuid as created_by
+join core.mv_stops stops on stops.id::text = attribute_values.json_data->>'stop_id'
+where routes.organization_id='3e6ec3ac-fcce-4698-b1a6-87140e1197ec' and attribute_values.json_data->>'item_type_code' = '5'
+tops.json_data->>'name' as stop_name,
+items.json_data->>'name' as item_name,
+(users.json_data->>'first_name') || ' ' || (users.json_data->>'last_name') as user,
+((pivot.values->'attribute_type_code_50')->>'value')::numeric as oil_production,
+coalesce( ((pivot.values->'attribute_type_code_51')->>'value')::numeric, ((pivot.values->'attribute_type_code_10015')->>'value')::numeric) as water_production,
+coalesce( ((pivot.values->'attribute_type_code_79')->>'value')::numeric, ((pivot.values->'attribute_type_code_10022')->>'value')::numeric) as gas_production,
+(attribute_values.json_data->>'stop_id')::uuid as stop_id,
+(attribute_values.json_data->>'item_id')::uuid as item_id,
+(attribute_values.json_data->>'value')::numeric as value,
+(attribute_values.json_data->>'output_value')::numeric as output_value,
+(attribute_values.json_data->>'attribute_type_code')::numeric as attribute_type_code,
+(attribute_values.json_data->>'submission_date')::timestamp as submission_date,
+(attribute_values.json_data->>'effective_date')::timestamp as effective_date,
+(attribute_values.json_data->>'created_at')::timestamp as created_at,
+attribute_values.json_data->>'tz' as tz,
+(attribute_values.json_data->>'created_by')::uuid as created_by
+join core.mv_stops stops on stops.id::text = attribute_values.json_data->>'stop_id'
+where routes.organization_id='3e6ec3ac-fcce-4698-b1a6-87140e1197ec' and attribute_values.json_data->>'item_type_code' = '5'
+tops.json_data->>'name' as stop_name,
+items.json_data->>'name' as item_name,
+(users.json_data->>'first_name') || ' ' || (users.json_data->>'last_name') as user,
+((pivot.values->'attribute_type_code_50')->>'value')::numeric as oil_production,
+coalesce( ((pivot.values->'attribute_type_code_51')->>'value')::numeric, ((pivot.values->'attribute_type_code_10015')->>'value')::numeric) as water_production,
+coalesce( ((pivot.values->'attribute_type_code_79')->>'value')::numeric, ((pivot.values->'attribute_type_code_10022')->>'value')::numeric) as gas_production,
+(attribute_values.json_data->>'stop_id')::uuid as stop_id,
+(attribute_values.json_data->>'item_id')::uuid as item_id,
+(attribute_values.json_data->>'value')::numeric as value,
+(attribute_values.json_data->>'output_value')::numeric as output_value,
+(attribute_values.json_data->>'attribute_type_code')::numeric as attribute_type_code,
+(attribute_values.json_data->>'submission_date')::timestamp as submission_date,
+(attribute_values.json_data->>'effective_date')::timestamp as effective_date,
+(attribute_values.json_data->>'created_at')::timestamp as created_at,
+attribute_values.json_data->>'tz' as tz,
+(attribute_values.json_data->>'created_by')::uuid as created_by
+join core.mv_stops stops on stops.id::text = attribute_values.json_data->>'stop_id'
+where routes.organization_id='3e6ec3ac-fcce-4698-b1a6-87140e1197ec' and attribute_values.json_data->>'item_type_code' = '5'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10028')->>'value')::numeric as rpm,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+(targets.target_json->>'attribute_type_code_79')::numeric,
+    (targets.target_json->>'attribute_type_code_10022')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10028')->>'value')::numeric as rpm,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+(targets.target_json->>'attribute_type_code_79')::numeric,
+    (targets.target_json->>'attribute_type_code_10022')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+(targets.target_json->>'attribute_type_code_79')::numeric,
+    (targets.target_json->>'attribute_type_code_10022')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+--and items.json_data->>'organization_id' = '421662d6-7d12-4981-85a9-0e0c6066bb05'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'sub_type_code' in ('5','6')
+and ((pivot_items.values->'attribute_type_code_78')->>'value') is not null
+and ((pivot_items.values->'attribute_type_code_78')->>'source') <> '6'
+and items.json_data->>'organization_id' = 'c93359e6-4b9f-4970-94b1-b7842aea58f3'
+group by items.json_data->>'stop_id', client_day
+join presidio.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.organization_unit_2, routes.organization_unit_3, routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = 'c93359e6-4b9f-4970-94b1-b7842aea58f3'
+group by items.json_data->>'stop_id', client_day
+join presidio.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+(forms.json_data->>'stop_id')::uuid as stop_id
+where (forms.json_data->>'product') = '1' AND pivot_tickets.client_day >= ($P{Date})::date - INTERVAL '182 day'
+group by forms.json_data->>'stop_id'
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  coalesce( ((production_values->'attribute_type_code_10031')->>'value')::numeric, 0) as oil_sales_nonop
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10028')->>'value')::numeric as rpm,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+      coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+      --coalesce( (projections.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_projection,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+    COALESCE(((targets.target_json ->> 'attribute_type_code_79'::text))::numeric, ((targets.target_json ->> 'attribute_type_code_10022'::text))::numeric, (0)::numeric) AS gas_production_target,
+    --COALESCE(((projections.target_json ->> 'attribute_type_code_79'::text))::numeric, ((projections.target_json ->> 'attribute_type_code_10022'::text))::numeric, (0)::numeric) AS gas_production_projection,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  trim( (a.json_data->>'name') ) as organization_unit_3,
+  trim( (b.json_data->>'name') ) as organization_unit_2,
+  trim( (c.json_data->>'name') ) as organization_unit_1,
+  trim( (d.json_data->>'name') ) as organization_unit_0,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+left outer join core.organization_units b on a.json_data->>'parent_unit_id' = b.id::text
+left outer join core.organization_units c on b.json_data->>'parent_unit_id' = c.id::text
+left outer join core.organization_units d on c.json_data->>'parent_unit_id' = d.id::text
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = 'c93359e6-4b9f-4970-94b1-b7842aea58f3'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '3275f756-1f71-4a98-a12a-7cd49beda8bb'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join resolute.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+and (stops.json_data->>'name' not like 'TB%')
+and stops.json_data->>'name' not like '%VRU%'
+and stops.json_data->>'name' not in (
+order by routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+and items.json_data->>'type_code' in ('1','7')
+and ((pivot_items.values->'attribute_type_code_2')->>'value') is not null
+and (items.json_data ->> 'deleted')::boolean = false
+and (items.json_data ->> 'hidden')::boolean = false
+and items.json_data->>'organization_id' = '3275f756-1f71-4a98-a12a-7cd49beda8bb'
+--and ((pivot_items.values->'attribute_type_code_2')->>'source') = '1'
+group by items.json_data->>'stop_id', client_day
+join resolute.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+and (stops.json_data->>'name' not like 'TB%')
+and stops.json_data->>'name' not like '%VRU%'
+order by routes.name, stops.json_data->>'name'
+(forms.json_data->>'stop_id')::uuid as stop_id
+where (forms.json_data->>'product') = '1' AND pivot_tickets.client_day >= CURRENT_DATE - INTERVAL '90 day'
+group by forms.json_data->>'stop_id'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and (stops.json_data ->> 'deleted')::boolean = false
+and (stops.json_data ->> 'hidden')::boolean = false
+order by routes.organization_unit_2, routes.organization_unit_3, routes.name, stops.json_data->>'name'
+tops.json_data->>'name' as "Stop",
+items.json_data->>'stop_id' as stop_id,
+where items.json_data->>'type_code' <> '5'
+--and ((pivot_items.values->'attribute_type_code_4')->>'value') is not null
+and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+group by items.json_data->>'stop_id', client_day
+join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+  ((well_values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+  ((well_values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+  ((well_values->'attribute_type_code_3')->>'value')::numeric as flowline_pressure,
+  ((well_values->'attribute_type_code_95')->>'value')::numeric as flow_rate,
+  ((well_values->'attribute_type_code_6')->>'value')::numeric as dehy_temp,
+  ((well_values->'attribute_type_code_7')->>'value')::numeric as differential_pressure,
+  ((well_values->'attribute_type_code_8')->>'value')::numeric as gas_temperature,
+  ((well_values->'attribute_type_code_9')->>'value')::numeric as gauge_time,
+  ((well_values->'attribute_type_code_10')->>'value')::numeric as hp_separator_pressure,
+  ((well_values->'attribute_type_code_11')->>'value')::numeric as hp_separator_temperature,
+  ((well_values->'attribute_type_code_12')->>'value')::numeric as line_heater_choke,
+  ((well_values->'attribute_type_code_13')->>'value')::numeric as line_heater_pressure,
+  ((well_values->'attribute_type_code_14')->>'value')::numeric as line_heater_temperature,
+  ((well_values->'attribute_type_code_15')->>'value')::numeric as line_pressure,
+  ((well_values->'attribute_type_code_16')->>'value')::numeric as lp_separator_pressure,
+  ((well_values->'attribute_type_code_17')->>'value')::numeric as lp_separator_temperature,
+  ((well_values->'attribute_type_code_19')->>'value')::numeric as spot_rate,
+  ((well_values->'attribute_type_code_20')->>'value')::numeric as wellhead_choke,
+  ((well_values->'attribute_type_code_21')->>'value')::numeric as bottom_hole_pressure,
+  ((well_values->'attribute_type_code_22')->>'value')::numeric as choke_setting,
+  ((well_values->'attribute_type_code_23')->>'value')::numeric as downtime,
+  ((well_values->'attribute_type_code_24')->>'value')::numeric as header_pressure,
+  ((well_values->'attribute_type_code_25')->>'value')::numeric as plunger_attempts,
+  ((well_values->'attribute_type_code_26')->>'value')::numeric as plunger_trips,
+  ((well_values->'attribute_type_code_28')->>'value')::numeric as volume_disposed,
+  ((well_values->'attribute_type_code_10028')->>'value')::numeric as rpm,
+  coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) as oil_production,
+  coalesce( (targets.target_json->>'attribute_type_code_50')::numeric, 0) as oil_production_target,
+((production_values->'attribute_type_code_51')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10015')->>'value')::numeric
+  coalesce( (targets.target_json->>'attribute_type_code_51')::numeric,
+(targets.target_json->>'attribute_type_code_10015')::numeric,
+  (well_values->'attribute_type_code_66')->>'value' as downtime_reason,
+  split_part((well_values->'attribute_type_code_66')->>'value', '-', 1) AS downtime_category,
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 2),
+    split_part((well_values->'attribute_type_code_66')->>'value', ' - ', 3)
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+(targets.target_json->>'attribute_type_code_79')::numeric,
+    (targets.target_json->>'attribute_type_code_10022')::numeric,
+  ((well_values->'attribute_type_code_98')->>'value')::numeric as surface_casing_pressure,
+  ((production_values->'attribute_type_code_106')->>'value')::numeric as gross_boe,
+  ((well_values->'attribute_type_code_10002')->>'value')::numeric as amps_a,
+  ((well_values->'attribute_type_code_10003')->>'value')::numeric as amps_b,
+  ((well_values->'attribute_type_code_10004')->>'value')::numeric as amps_c,
+  ((well_values->'attribute_type_code_10005')->>'value')::numeric as drive_hertz,
+  ((well_values->'attribute_type_code_10006')->>'value')::numeric as motor_temp,
+  ((well_values->'attribute_type_code_10007')->>'value')::numeric as vert_separator_pressure,
+  ((well_values->'attribute_type_code_10008')->>'value')::numeric as ko_pressure,
+  (well_values->'attribute_type_code_10010')->>'value' as artifical_lift_type,
+  ((well_values->'attribute_type_code_10013')->>'value')::numeric as run_time,
+  ((well_values->'attribute_type_code_10017')->>'value')::numeric as tubing_choke,
+  ((well_values->'attribute_type_code_10018')->>'value')::numeric as casing_choke,
+  ((well_values->'attribute_type_code_10020')->>'value')::numeric as ht_pressure,
+  ((well_values->'attribute_type_code_10021')->>'value')::numeric as ht_temp,
+  ((well_values->'attribute_type_code_10023')->>'value')::numeric as pump_intake_pressure,
+  (well_values->'attribute_type_code_10024')->>'value' as downtime_tier,
+  items.properties->>'Completion Id' as completion_id,
+  items.properties->>'API #' as api_number,
+  items.properties->>'API Gravity' as api_gravity,
+  items.properties->>'County' as county,
+  items.properties->>'State' as state,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) * stop_values.nri as net_oil,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+coalesce( ((production_values->'attribute_type_code_50')->>'value')::numeric, 0) + (coalesce(
+((production_values->'attribute_type_code_79')->>'value')::numeric,
+      ((production_values->'attribute_type_code_10022')->>'value')::numeric,
+  ((well_values->'attribute_type_code_143')->>'value')::numeric as kilowatt_hour
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') = '1') then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when ((forms.json_data->>'product') = '1' and (forms.json_data->>'disposition_code') in ('8', '9')) then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+case when (forms.json_data->>'product') = '2' then coalesce(((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric, 0) else 0 end
+forms.json_data->>'stop_id' as stop_id,
+forms.json_data->>'product' as product
+    and forms.json_data->>'organization_id' = '43fa6f90-641c-4956-b5ff-2080fd898049'
+( (forms.json_data->>'disposition_code') in ('1', '8', '9') and (forms.json_data->>'product') = '1' )
+( (forms.json_data->>'product') = '2' )
+group by forms.json_data->>'stop_id', pivot_tickets.client_day, forms.json_data->>'product'
+    max( case when pivot_items.stop_id = '91f35ba2-0f20-48a9-8b5a-583e6df5a47b' then ((values->'attribute_type_code_10001')->>'value')::numeric else null end ) as counter_reading2,
+    max( ((values->'attribute_type_code_10001')->>'value')::numeric ) as counter_reading,
+    max( ((values->'attribute_type_code_10002')->>'value')::numeric ) as depth_gauge_visual,
+    max( ((values->'attribute_type_code_10003')->>'value')::numeric ) as depth_gauge_sensor
+    --((values->'attribute_type_code_10001')->>'value')::numeric as counter_reading,
+    ((values->'attribute_type_code_10002')->>'value')::numeric as depth_gauge_visual,
+    ((values->'attribute_type_code_10003')->>'value')::numeric as depth_gauge_sensor
+    --((values->'attribute_type_code_10001')->>'value')::numeric as counter_reading,
+    ((values->'attribute_type_code_10002')->>'value')::numeric as depth_gauge_visual,
+    ((values->'attribute_type_code_10003')->>'value')::numeric as depth_gauge_sensor
+    max( case when pivot_items.stop_id = '91f35ba2-0f20-48a9-8b5a-583e6df5a47b' then ((values->'attribute_type_code_10001')->>'value')::numeric else null end ) as counter_reading2,
+    max( ((values->'attribute_type_code_10001')->>'value')::numeric ) as counter_reading,
+    max( ((values->'attribute_type_code_10002')->>'value')::numeric ) as depth_gauge_visual,
+    max( ((values->'attribute_type_code_10003')->>'value')::numeric ) as depth_gauge_sensor
+    --((values->'attribute_type_code_10001')->>'value')::numeric as counter_reading,
+    ((values->'attribute_type_code_10002')->>'value')::numeric as depth_gauge_visual,
+    ((values->'attribute_type_code_10003')->>'value')::numeric as depth_gauge_sensor
+    --((values->'attribute_type_code_10001')->>'value')::numeric as counter_reading,
+    ((values->'attribute_type_code_10002')->>'value')::numeric as depth_gauge_visual,
+    ((values->'attribute_type_code_10003')->>'value')::numeric as depth_gauge_sensor
+and (well.properties->>'Well Category' = 'HORIZONTAL' or (items.properties->>'Network Id') is not null)
+((values->'attribute_type_code_78')->>'value')::numeric as yesterdays_volume,
+when items.sub_type_code = 5 and items.name like '%&%' and items.name not like '%VRU%' then ((values->'attribute_type_code_78')->>'value')::numeric 
+when items.sub_type_code = 6 and items.name not like '%VRU%' then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+when items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric
+when items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric * -1
+(case when lower(items.name) like '%vru%' and items.sub_type_code = 5 then ((values->'attribute_type_code_78')->>'value')::numeric else 0 end) as vru_total,
+(case when lower(items.name) like '%vru%' and items.sub_type_code = 6 then ((values->'attribute_type_code_78')->>'value')::numeric else 0 end) as vru_sales_total,
+  and (well.properties->>'Well Category' = 'HORIZONTAL' or (items.properties->>'Network Id') is not null)
+meter1.properties->>'Network Id' as network_id,
+--items.json_data->>'stop_id'::text as stop_id,
+items.json_data->'properties'->>'Aries Propnum' as "PROPNUM",
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+--items.json_data->>'sub_type_code' as sub_type_code,
+((values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+((values->'attribute_type_code_22')->>'value')::numeric as choke,
+((values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+((values->'attribute_type_code_50')->>'value')::numeric as oil_prod,
+((values->'attribute_type_code_79')->>'value')::numeric as gas_prod,
+((values->'attribute_type_code_51')->>'value')::numeric as water_prod
+where items.json_data->>'sub_type_code' = '3'
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+forms.json_data->>'number' as number,
+forms.json_data->>'on_seal_number' as on_seal_number,
+forms.json_data->>'off_seal_number' as off_seal_number,
+(forms.json_data->>'item_id')::uuid as tank_id,
+( ((forms.json_data->>'ticket_date')::timestamp at time zone 'utc') at time zone 'America/Denver')::date as ticket_date,
+(pivot_tickets.values->'attribute_type_code_75')->>'value' as transporter,
+((pivot_tickets.values->'attribute_type_code_81')->>'value')::numeric as open_gauge_temperature,
+((pivot_tickets.values->'attribute_type_code_82')->>'value')::numeric as close_gauge_temperature,
+((pivot_tickets.values->'attribute_type_code_83')->>'value')::numeric as observed_temperature,
+((pivot_tickets.values->'attribute_type_code_84')->>'value')::numeric as observed_gravity,
+((pivot_tickets.values->'attribute_type_code_85')->>'value')::numeric as bsw,
+((pivot_tickets.values->'attribute_type_code_102')->>'value')::numeric as gross_volume_calculated,
+((pivot_tickets.values->'attribute_type_code_86')->>'value')::numeric as gross_volume,
+((pivot_tickets.values->'attribute_type_code_89')->>'value')::numeric as net_volume,
+((pivot_tickets.values->'attribute_type_code_99')->>'value')::numeric as corrected_gravity,
+((pivot_tickets.values->'attribute_type_code_100')->>'value')::numeric as open_gauge,
+((pivot_tickets.values->'attribute_type_code_100')->>'output_value')::numeric as open_gauge_bbl,
+((pivot_tickets.values->'attribute_type_code_101')->>'value')::numeric as close_gauge,
+((pivot_tickets.values->'attribute_type_code_101')->>'output_value')::numeric as close_gauge_bbl,
+((pivot_tickets.values->'attribute_type_code_10000')->>'value')::numeric as ticket_volume,
+(pivot_tickets.values->'attribute_type_code_10002')->>'value' as seal_location,
+(pivot_tickets.values->'attribute_type_code_10007')->>'value' as destination,
+((pivot_tickets.values->'attribute_type_code_10031'::text) ->> 'value'::text) AS statement_volume,
+((pivot_tickets.values->'attribute_type_code_10032'::text) ->> 'value'::text) AS well_name
+join core.mv_stops stops on stops.id::text = forms.json_data->>'stop_id'
+join core.mv_items tank on tank.id::text = forms.json_data->>'item_id'
+and forms.json_data->>'product' in ('1', '2')
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id'::text as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_50')->>'value')::numeric else null end as oil_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_51')->>'value')::numeric else null end as water_prod,
+case when items.json_data->>'sub_type_code' = '3' then ((values->'attribute_type_code_79')->>'value')::numeric else null end as gas_prod,
+where items.json_data->>'sub_type_code' in ('3')
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+--items.json_data->>'sub_type_code' as sub_type_code,
+((values->'attribute_type_code_50')->>'value')::numeric as oil_prod,
+((values->'attribute_type_code_51')->>'value')::numeric as water_prod,
+((values->'attribute_type_code_79')->>'value')::numeric as gas_prod,
+where items.json_data->>'sub_type_code' = '3'
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+--items.json_data->>'sub_type_code' as sub_type_code,
+((values->'attribute_type_code_50')->>'value')::numeric as oil_prod,
+((values->'attribute_type_code_51')->>'value')::numeric as water_prod,
+((values->'attribute_type_code_79')->>'value')::numeric as gas_prod,
+where items.json_data->>'sub_type_code' = '3'
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+--items.json_data->>'sub_type_code' as sub_type_code,
+((values->'attribute_type_code_50')->>'value')::numeric as oil_prod,
+((values->'attribute_type_code_51')->>'value')::numeric as water_prod,
+((values->'attribute_type_code_79')->>'value')::numeric as gas_prod,
+where items.json_data->>'sub_type_code' = '3'
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'
+items.json_data->>'stop_id' as stop_id,
+--items.json_data->>'sub_type_code' as sub_type_code,
+((values->'attribute_type_code_2')->>'value')::numeric as casing_pressure,
+((values->'attribute_type_code_22')->>'value')::numeric as choke,
+((values->'attribute_type_code_1')->>'value')::numeric as tubing_pressure,
+((values->'attribute_type_code_50')->>'value')::numeric as oil_prod,
+((values->'attribute_type_code_79')->>'value')::numeric as gas_prod,
+((values->'attribute_type_code_51')->>'value')::numeric as water_prod
+where items.json_data->>'sub_type_code' = '3'
+and items.json_data->>'organization_id' = 'a48a3795-d57e-4dfb-844b-85cbf90c1d7c'

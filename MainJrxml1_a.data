@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2016-08-01T11:31:36 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Missing-Data-Report" pageWidth="750" pageHeight="842" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="e9e15bdd-7959-4100-aecd-7e75d0d0b2f3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Scout Prod VN15"/>
+	<property name="ireport.jasperserver.url" value="http://reports.fdc.io/jasperserver-pro/"/>
+	<property name="ireport.jasperserver.user" value="superuser"/>
+	<property name="ireport.jasperserver.report.resource" value="/public/orgs/midstates/reports/MissingDataReport_files/MainJrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/public/orgs/midstates/reports/MissingDataReport"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F2F2F2">
+		<box>
+			<pen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<topPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<leftPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<bottomPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<rightPen lineWidth="0.5" lineColor="#B0B0B0"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#EDEDED">
+		<box>
+			<pen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<topPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<leftPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<bottomPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<rightPen lineWidth="0.5" lineColor="#B0B0B0"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<topPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<leftPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<bottomPen lineWidth="0.5" lineColor="#B0B0B0"/>
+			<rightPen lineWidth="0.5" lineColor="#B0B0B0"/>
+		</box>
+	</style>
+	<subDataset name="MissingData" uuid="c37db8de-3cbc-4e6c-be8f-c91b875b436e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Scout Prod VN15"/>
+		<parameter name="Date" class="java.util.Date"/>
+		<queryString language="SQL">
+			<![CDATA[select
+	"Stop", "Route", "Area", "Sub Area"
+from (
+	select 
+		stops.json_data->>'name' as "Stop",
+		routes.name as "Route",
+		routes.organization_unit_2 as "Area",
+		routes.organization_unit_3 as "Sub Area",
+		(
+		  select ('{' || string_agg(elem, ', ') || '}')::int4[]
+		  from json_array_elements_text(json_data->'enabled_configurations') elem
+		) as enabled_conigurations
+	from bretagne.stg_stops stops
+
+	left outer join (
+		select
+			items.json_data->>'stop_id' as stop_id,
+			item_crosstab.client_day,
+			count(*)
+		from bretagne.item_crosstab
+		join bretagne.stg_items items on items.id = item_id
+		where items.json_data->>'type_code' <> '5'
+		--and ((item_crosstab.values->'attribute_type_code_4')->>'value') is not null
+		and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+		and item_crosstab.client_day = $P{Date}
+
+		group by items.json_data->>'stop_id', client_day
+	) t on t.stop_id = stops.id::text
+	join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+	where t.client_day is null
+	and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+	order by routes.organization_unit_2, routes.organization_unit_3, routes.name, stops.json_data->>'name'
+) t
+where enabled_conigurations && ARRAY[1] and "Stop" not in ('LONGHURST 1H (TA)','LONGHURST 2 (TA)','GENA 2513 4H-12 C Trilateral','ECKELS 1','AMES 1 (TA)','PORTMAN 1H (TA)','LEAMON 1')]]>
+		</queryString>
+		<field name="Area" class="java.lang.String"/>
+		<field name="Sub Area" class="java.lang.String"/>
+		<field name="Route" class="java.lang.String"/>
+		<field name="Stop" class="java.lang.String"/>
+		<variable name="Stop1" class="java.lang.Integer" calculation="Count">
+			<variableExpression><![CDATA[$F{Stop}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="Date" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select
+	"Stop", "Route", "Area", "Sub Area"
+from (
+	select 
+		stops.json_data->>'name' as "Stop",
+		routes.name as "Route",
+		routes.organization_unit_2 as "Area",
+		routes.organization_unit_3 as "Sub Area",
+		(
+		  select ('{' || string_agg(elem, ', ') || '}')::int4[]
+		  from json_array_elements_text(json_data->'enabled_configurations') elem
+		) as enabled_conigurations
+	from bretagne.stg_stops stops
+
+	left outer join (
+		select
+			items.json_data->>'stop_id' as stop_id,
+			item_crosstab.client_day,
+			count(*)
+		from bretagne.item_crosstab
+		join bretagne.stg_items items on items.id = item_id
+		where items.json_data->>'type_code' <> '5'
+		--and ((item_crosstab.values->'attribute_type_code_4')->>'value') is not null
+		and items.json_data->>'organization_id' = '3e6ec3ac-fcce-4698-b1a6-87140e1197ec'
+		and item_crosstab.client_day = $P{Date}
+
+		group by items.json_data->>'stop_id', client_day
+	) t on t.stop_id = stops.id::text
+	join mpo.routes on stops.json_data->>'route_id' = routes.id::text
+	where t.client_day is null
+	and routes.name not like '%NonOp%' and routes.name not like '%GC%' and (stops.json_data ->> 'deleted')::boolean = false
+) t
+where enabled_conigurations && ARRAY[1]]]>
+	</queryString>
+	<field name="Area" class="java.lang.String"/>
+	<field name="Sub Area" class="java.lang.String"/>
+	<field name="Route" class="java.lang.String"/>
+	<field name="Stop" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<textField pattern="MMMM d, yyyy" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="420" y="0" width="290" height="29" forecolor="#000000" backcolor="#FFFFFF" uuid="eb3db85c-ebce-42bd-a8bd-02200ed8c4a4">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="0" y="0" width="220" height="29" forecolor="#2B2B2B" uuid="e552270c-86ed-4a97-9520-7691db989116">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MISSING DATA REPORT"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="710" height="90" uuid="46acf2d5-9d6b-44c3-8e02-452a90f489fb"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="MissingData" uuid="d184bb57-0cc5-4591-9db9-959028bb4811">
+						<datasetParameter name="Date">
+							<datasetParameterExpression><![CDATA[$P{Date}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="96d206e6-ca1d-42ff-9082-7a0b306c3cfd">
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" uuid="555785d4-c6d4-47cd-b915-6007e0220e28"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Area]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="30" uuid="36fffb9d-4ea1-466c-b114-376bc71e9358"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Area}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="c4739ade-d585-4fcd-8082-d9415a757f12">
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="30" uuid="0c02158b-215d-4fba-bc54-4f42660c2f23"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sub Area]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="0d0da262-a5a0-465b-99a8-0f585ba2887d"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sub Area}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="5c5a7b39-4b01-4fc8-87a0-1139ef47fd60">
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="200" height="30" uuid="94ceed84-d822-4ff5-942e-adec72f5a456"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Route]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="200" height="30" uuid="ca9b78b2-7735-40bf-863a-3a6358c17c34"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Route}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="260" uuid="1a132364-3621-4d53-9a27-20ef28fb43ee">
+						<jr:tableFooter style="Table_TH" height="30">
+							<textField isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="260" height="30" forecolor="#707070" backcolor="#FFFFFF" uuid="99e3a11f-d77f-409b-9f06-61db1a6f87a9">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="5" rightPadding="10"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Stop1}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="260" height="30" uuid="619d6df8-6c4e-4ae2-b72d-f294692fb8b0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Stop]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="260" height="30" uuid="54ee201d-9e33-4375-bd08-84f91c579469"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Stop}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
